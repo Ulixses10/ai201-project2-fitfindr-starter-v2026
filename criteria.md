@@ -43,6 +43,7 @@ Given a query that matches no listings, the agent stops before calling
 ---
 
 ## 3. Something about state
+     For five runs where search returns atleast one listing the item ID that will be passed into suggest_outfit will match the ID session for selected_items in 5 of 5 tries. 
 
 <!-- YOU WRITE THIS ONE.
 
@@ -56,13 +57,13 @@ Given a query that matches no listings, the agent stops before calling
 
 
 
-**Why this target:**
-
+**Why this target:** The selected item is passed through each section when its passed through one onto the other it will perserve the item ID every time even when the model produces a different outfit suggestion. 
 
 
 ---
 
 ## 4. Something about the fit card
+     If we are given a valid listing and a non empty outfit suggestion then we will get a generated fit card that will contain a short paragraph of the selected clothing item, and with the item price of the items in atleast 4 of 5 tries.
 
 <!-- YOU WRITE THIS ONE.
 
@@ -77,14 +78,14 @@ Given a query that matches no listings, the agent stops before calling
 
 
 
-**Why this target:**
+**Why this target:** The caption will include the essential listing information of the selected clothing items and price but a target of 4 out of 5 is the target because it can generate an error when its obtaining the information. 
 
 
 
 ---
 
-## 5. Your choice
-
+## 5. Your choice (Users Budget)
+     For five searches that each provide a maximum price and have atleast one matching listing within that budget. The search will return a listing that has the price less than or equal to the maximum budget. 5 of 5 tries 
 <!-- YOU WRITE THIS ONE TOO.
 
      Pick something you actually care about getting right. Speed, the empty
@@ -94,7 +95,7 @@ Given a query that matches no listings, the agent stops before calling
 
 
 
-**Why this target:**
+**Why this target:** Budget filtering. It will show items that respect the users budget and exclude prices that are over the budget and make sure to only list items that are qualified. 
 
 
 
