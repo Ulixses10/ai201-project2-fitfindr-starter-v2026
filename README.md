@@ -120,18 +120,52 @@ $ python app.py ask '...'
 **The three tools, tested one at a time**
 
 ```
-$ python -c "from tools import search_listings; print(search_listings('graphic tee', max_price=30))"
+$ python -c "from tools import search_listings; print(search_listings('graphic tee', size='M', max_price=30))"
+.
+
+[{'id': 'lst_002', 'title': 'Y2K Baby Tee — Butterfly Print', 'description': 'Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.', 'category': 'tops', 'style_tags': ['y2k', 'vintage', 'graphic tee', 'cottagecore'], 'size': 'S/M', 'condition': 'excellent', 'price': 18.0, 'colors': ['white', 'pink', 'purple'], 'brand': None, 'platform': 'depop'}, {'id': 'lst_017', 'title': 'Mesh Long-Sleeve Top — Black', 'description': 'Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.', 'category': 'tops', 'style_tags': ['y2k', 'grunge', 'goth', 'layering'], 'size': 'S/M', 'condition': 'excellent', 'price': 15.0, 'colors': ['black'], 'brand': None, 'platform': 'depop'}]
+
 
 ```
 
 ```
-$ python -c "from tools import suggest_outfit; ..."
+$ python -c "from tools import suggest_outfit; from utils.data_loader import get_example_wardrobe, load_listings; print(suggest_outfit(load_listings()[0], get_example_wardrobe()))"
+
+Here are two outfits featuring the Vintage Levi's 501 Jeans:
+
+**Outfit 1: Casual & Clean**
+*   **Selected Item:** Vintage Levi's 501 Jeans — Medium Wash
+*   **Wardrobe Pieces:** White ribbed tank top, Chunky white sneakers, Black crossbody bag
+*   **Why it works:** This is a timeless, effortless combination. The fitted white tank balances the straight-leg fit of the 501s, while the chunky sneakers and crossbody bag keep the look modern and streetwear-inspired.
+
+**Outfit 2: Cozy Layered Streetwear**
+*   **Selected Item:** Vintage Levi's 501 Jeans — Medium Wash
+*   **Wardrobe Pieces:** Oversized grey crewneck sweatshirt, Black combat boots, Brown leather belt, Black crossbody bag
+*   **Why it works:** Pairing the relaxed 501s with an oversized crewneck creates a comfortable, slouchy silhouette. The brown belt adds a nice contrast at the waist, and the combat boots give the vintage denim an edgy, grounded finish.
 
 ```
 
 ```
-$ python -c "from tools import create_fit_card; ..."
+$ AI201_CACHE=0 python - <<'PY'
+from tools import create_fit_card
+from utils.data_loader import load_listings
 
+item = load_listings()[0]
+outfit = "Pair the selected jeans with a white ribbed tank top and chunky white sneakers."
+
+for attempt in range(1, 4):
+    print(f"\nRun {attempt}:")
+    print(create_fit_card(outfit, item))
+PY
+
+Run 1:
+Style these vintage Levi's 501 jeans with a simple white ribbed tank top and chunky white sneakers for an effortless streetwear look. Find this classic medium wash denim listed on depop for $38.00.
+
+Run 2:
+Embrace a classic streetwear look by styling these vintage Levi's 501 jeans with a simple white ribbed tank top and chunky white sneakers. You can find this medium wash denim for $38.0 on Depop.
+
+Run 3:
+Embrace effortless streetwear styling by pairing these classic blue vintage Levi's 501 Jeans with a simple white ribbed tank top and chunky sneakers. Find them on Depop for $38.00 to complete your casual denim look.
 ```
 
 ---
