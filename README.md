@@ -40,13 +40,13 @@
 ## What This Does
 
 <!-- Three or four sentences: what a user asks for, and what they get back. -->
-
+This project is a system that allows the users to get something in return which can be a suggestion or an answer. For example, the user will tell the system their budget, the type of clothes they are looking for , and the size. The system will then use this information to fulfill the request and come back with either a suggestion based on the information that was given to them so basically it will try to find a matching clothing listing or notify the user when their is no matches and can give a following suggestion on what they can change in their request so they can resubmit.
 
 
 ---
 
 ## Tool Inventory
-
+     
 <!-- Four lines per tool. This is worth 2 points and it's the single most
      common place students lose them.
 
@@ -59,24 +59,24 @@
 
 ### `search_listings`
 
-- **What it does:**
-- **Inputs:** <!-- name and type each: `max_price` (float), not "a price" -->
-- **Returns:**
-- **When it has nothing:**
+- **What it does:** This will search the provided clothing lines using clothing keywords which will also include sizes, and the maximum price. 
+- **Inputs:** description(str) will contain clothing keywords. Size(str or none) will focus on the requested size the user gives. Max_price will set an inclusive price ceilinig.<!-- name and type each: `max_price` (float), not "a price" -->
+- **Returns:** A list[dict] of matching listing that the user has requested. Each dictionary contains id, title, description, category, style_tags, size, condition, price, colors, brand, and platform. Listing with no keywords overlap are excluded.
+- **When it has nothing:**  It will return an empty list [] , when no listings are match
 
 ### `suggest_outfit`
 
-- **What it does:**
-- **Inputs:**
-- **Returns:**
-- **When it has nothing:**
+- **What it does:** This will suggest one or two outfits based on the users wardrobes.
+- **Inputs:** new_item(dict) is the selected listing dictionary. wardrobe(dict) contains an items listing of wardrobe dicitionaries which will describe clothing the user owns. 
+- **Returns:** a non-empty str describing one or two outfit suggestions which will include the selected items from the users wardrobe.
+- **When it has nothing:** If it's empty it will just give advice on items that go well together to make an outfit. It will suggest any clothing item since it will not know what is in the wardrobe.
 
 ### `create_fit_card`
 
-- **What it does:**
-- **Inputs:**
-- **Returns:**
-- **When it has nothing:**
+- **What it does:** Uses the model to turn the outfit suggestion into a short caption which can be used for social media.
+- **Inputs:** outfit (str) is the outfit suggestion returned by suggest_outfit. new_item (dict) is the selected listing dictionary
+- **Returns:** A str containing a two-to-four-sentence caption that mentions the selected item, its price, and its platform once each, and it will describes the outfit’s style.
+- **When it has nothing:** if outfit is empty then it will return a message that will explain that an outfit suggestion is needed in order to make a fit card.
 
 ---
 
@@ -93,7 +93,7 @@
      The grader checks your code against what you claim here, so the file and
      function have to be real. -->
 
-**Branch rule:**
+**Branch rule:** If search_listings returns an empty list then a message will be stored that will give suggestions on changing clothing keywords, size , or budget and stop without calling the other tools. Otherwise select the first result and then save it in the session  and then continue onto suggest_outfit and then create_fit_card. 
 
 **Where it lives:** `agent.py::run_agent`
 
