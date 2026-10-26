@@ -40,7 +40,8 @@
 ## What This Does
 
 <!-- Three or four sentences: what a user asks for, and what they get back. -->
-This project is a system that allows the users to get something in return which can be a suggestion or an answer. For example, the user will tell the system their budget, the type of clothes they are looking for , and the size. The system will then use this information to fulfill the request and come back with either a suggestion based on the information that was given to them so basically it will try to find a matching clothing listing or notify the user when their is no matches and can give a following suggestion on what they can change in their request so they can resubmit.
+FitFindr helps users find clothing in the provided listings data using a clothing description, an optional size, and an optional budget. It selects the highest-ranked match and suggests outfits combining that item with the user's wardrobe. It then generates a short social media caption mentioning the item, price, platform, and outfit style. When no listings match, it stops and suggests changing the clothing keywords, size, or budget; when the wardrobe is empty, it provides general styling advice.
+
 
 
 ---
@@ -171,6 +172,8 @@ Embrace effortless streetwear styling by pairing these classic blue vintage Levi
 ---
 
 ## How I Used AI
+ I used AI to help implement the three tools and help connecting the tools. It provided Python implementations for keyword-ranked search, wardrobe-aware outfit suggestions, and caption generation with an empty-outfit guard. Some things that I did change was replacing the three stubs in `tools.py`, added the `re` and `json` imports, and ran the supplied terminal tests. I checked matching and empty search results, both wardrobe cases, and three uncached captions. When the caption tests initially printed blank output, I used its inspection command to check the function Python was loading, saved the updated file, and reran the tests successfully.
+
 
 <!-- Two specific moments. What you asked, what came back, what you changed.
 
